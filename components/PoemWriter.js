@@ -18,21 +18,19 @@ export default class PoemWriter extends React.Component {
     },
       this.poemValidator
     )
-    console.log("change poem state", this.state.poem)
-
   }
 
 
 
   poemValidator(){
     var poem = this.state.poem
-    console.log("peom validator", poem)
+
     var poemArray = poem.split(/\n/)
-    console.log(poemArray)
     var linesVal = poemArray.map((line, index) => this.lineVal(line, index))
-    console.log("linesVal", linesVal)
     if (linesVal.length === 3 && !linesVal.includes(false)) {
       this.setState({poemValid: true})
+    } else {
+      this.setState({poemValid: false})
     }
   }
 
@@ -43,7 +41,6 @@ export default class PoemWriter extends React.Component {
     } else if (position === 1) {
       return lineArr.length === 3 ? true : false
     }
-    console.log("lineArr", lineArr)
   }
   render() {
     if (this.state.poemValid === true) {
